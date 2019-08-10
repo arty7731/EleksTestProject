@@ -51,11 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperProfiles\CustomerProfile.cs" />
+    <Compile Include="Interfaces\Business\ICustomerManager.cs" />
+    <Compile Include="Interfaces\DbContext\IDataContext.cs" />
+    <Compile Include="Interfaces\Repository\ICustomerRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
