@@ -1,14 +1,9 @@
-﻿using EleksProject.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EleksProject.Core.Dto;
 
 namespace EleksProject.Core.Interfaces.Business
 {
     public interface ICustomerManager
     {
-        Customer GetCustomer(int customerId);
+        CustomerDto GetCustomer(int? customerId, string customerEmail);
     }
 }

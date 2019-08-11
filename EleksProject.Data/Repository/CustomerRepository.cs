@@ -1,12 +1,10 @@
-﻿using EleksProject.Core.Interfaces.Repository;
+﻿using EleksProject.Core.Dto;
+using EleksProject.Core.Interfaces.Repository;
 using EleksProject.Core.Interfaces.UnitOfWork;
 using EleksProject.Core.Model;
 using EleksProject.Data.Shared;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EleksProject.Data.Repository
 {
@@ -18,9 +16,30 @@ namespace EleksProject.Data.Repository
             
         }
 
-        public Customer GetCustomer(int customerId)
+        public CustomerDto GetCustomerWithLastTransactions(int? customerId, string customerEmail, int takeTransactionsCount)
         {
-            return this.Select().FirstOrDefault(c => c.CustomerId == customerId);
+            return this.Where(c => (!customerId.HasValue || c.CustomerId == customerId.Value) 
+                && (string.IsNullOrEmpty(customerEmail) || c.ContactEmail.Equals(customerEmail, StringComparison.InvariantCultureIgnoreCase)))
+                .Select(c => new CustomerDto
+                {
+                    CustomerId = c.CustomerId,
+                    ContactEmail = c.ContactEmail,
+                    CustomerName = c.CustomerName,
+                    MobileNo = c.MobileNo,
+                    Transactions =  c.Transaction
+                        .OrderByDescending(t => t.TransactionId)
+                        .Take(takeTransactionsCount)
+                        .Select(t => new TransactionDto
+                        {
+                            Amount = t.Amount,
+                            TransactionId = t.TransactionId,
+                            CurrencyCode = t.CurrencyCode,
+                            Status = t.Status,
+                            TransactionDate = t.TransactionDate
+                        })
+                })
+                .FirstOrDefault();
+            
         }
     }
 }

@@ -1,18 +1,15 @@
 ﻿using AutoMapper;
+using EleksProject.Core.Dto;
 using EleksProject.Core.Interfaces.Business;
 using EleksProject.Core.Interfaces.Repository;
 using EleksProject.Core.Interfaces.UnitOfWork;
-using EleksProject.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EleksProject.Business
 {
     public class CustomerManager : ManagerBase, ICustomerManager
     {
+        private const int TakeLastTransactionsCount = 5;
+
         private readonly ICustomerRepository customerRepository;
         private readonly IMapper mapper;
 
@@ -23,9 +20,10 @@ namespace EleksProject.Business
             this.customerRepository = customerRepository;
         }
 
-        public Customer GetCustomer(int customerId)
+        public CustomerDto GetCustomer(int? customerId, string customerEmail)
         {
-            return this.customerRepository.GetCustomer(customerId);
+            CustomerDto customer = this.customerRepository.GetCustomerWithLastTransactions(customerId, customerEmail, CustomerManager.TakeLastTransactionsCount);
+            return customer;
         }
     }
 }
