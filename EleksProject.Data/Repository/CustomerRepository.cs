@@ -18,7 +18,7 @@ namespace EleksProject.Data.Repository
 
         public CustomerDto GetCustomerWithLastTransactions(int? customerId, string customerEmail, int takeTransactionsCount)
         {
-            return this.Where(c => (!customerId.HasValue || c.CustomerId == customerId.Value) 
+            CustomerDto result = this.Where(c => (!customerId.HasValue || c.CustomerId == customerId.Value) 
                 && (string.IsNullOrEmpty(customerEmail) || c.ContactEmail.Equals(customerEmail, StringComparison.InvariantCultureIgnoreCase)))
                 .Select(c => new CustomerDto
                 {
@@ -39,7 +39,18 @@ namespace EleksProject.Data.Repository
                         })
                 })
                 .FirstOrDefault();
-            
+
+            return result;
+        }
+
+        public bool IsExistsCustomerByEmail(string customerEmail)
+        {
+            return this.Select().Any(c => c.ContactEmail.Equals(customerEmail, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public bool IsExistsCustomerById(int customerId)
+        {
+            return this.Select().Any(c => c.CustomerId == customerId);
         }
     }
 }

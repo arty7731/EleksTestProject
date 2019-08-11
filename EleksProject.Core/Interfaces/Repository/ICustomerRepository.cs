@@ -7,5 +7,7 @@ namespace EleksProject.Core.Interfaces.Repository
     public interface ICustomerRepository : IRepositoryBase<Customer>
     {
         CustomerDto GetCustomerWithLastTransactions(int? customerId, string customerEmail, int takeTransactionsCount);
+        bool IsExistsCustomerByEmail(string customerEmail);
+        bool IsExistsCustomerById(int customerId);
     }
 }
