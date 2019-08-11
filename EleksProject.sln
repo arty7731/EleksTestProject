@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{1A
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EleksProject.Database", "EleksProject.Database\EleksProject.Database.sqlproj", "{F897210C-9875-41CB-999E-85634F1B3112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EleksProject.Api", "..\EleksProject.Api\EleksProject.Api.csproj", "{7F4979EA-91F8-498A-9C71-7FEF7989A5D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EleksProject.Api", "EleksProject.Api\EleksProject.Api.csproj", "{7F4979EA-91F8-498A-9C71-7FEF7989A5D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
