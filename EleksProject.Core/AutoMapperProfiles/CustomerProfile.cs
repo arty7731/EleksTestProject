@@ -8,8 +8,6 @@ namespace EleksProject.Core.AutoMapperProfiles
     {
         public CustomerProfile()
         {
-            this.CreateMap<Customer, CustomerDto>()
-                .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.Transaction));
         }
     }
 }

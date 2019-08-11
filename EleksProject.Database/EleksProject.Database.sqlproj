@@ -65,4 +65,7 @@
     <Build Include="Table\Customer.sql" />
     <Build Include="Table\Transaction.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="SetUpTestData.PostDeployment.sql" />
+  </ItemGroup>
 </Project>
